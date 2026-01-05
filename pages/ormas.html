@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ormas Terlapor Jakarta Barat - Monitoring Jakarta Barat</title>
+    <link rel="stylesheet" href="../custom-styles.css">
+    
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1e40af;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 100;
+            border-radius: 0.5rem;
+            top: 100%;
+            left: 0;
+            padding-top: 0.25rem;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-radius: 0.5rem;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #1d4ed8;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-toggle::after {
+            content: " ▼";
+            font-size: 0.7em;
+            margin-left: 4px;
+        }
+        
+        .mobile-dropdown-content {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.3);
+            padding-left: 1rem;
+        }
+        
+        .mobile-dropdown-content.open {
+            display: block;
+        }
+        
+        .mobile-dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-dropdown-icon {
+            transition: transform 0.3s;
+        }
+        
+        .mobile-dropdown-icon.open {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+<header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between py-4">
+            <div class="flex items-center space-x-3">
+                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                </svg>
+                <div>
+                    <h1 class="text-2xl font-bold">Monitoring Jakarta Barat</h1>
+                    <p class="text-sm text-blue-100">Sistem Informasi & Pengawasan Wilayah</p>
+                </div>
+            </div>
+            
+            <button id="mobileMenuBtn" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <nav class="hidden md:block pb-4">
+            <ul class="flex flex-wrap gap-2">
+                <li><a href="../index.html" class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition">Home</a></li>
+                
+                <li class="dropdown">
+                    <button class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition dropdown-toggle ">
+                        Forum & Organisasi
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="../pages/fpk.html">FPK</a>
+                        <a href="../pages/paskibraka.html">Paskibraka</a>
+                        <a href="../pages/fkub.html">FKUB</a>
+                        <a href="../pages/fkdm.html">FKDM</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <button class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition dropdown-toggle active-nav">
+                        Politik & Ormas
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="../pages/parpol.html">Partai Politik</a>
+                        <a href="../pages/ormas.html">Ormas Terlapor</a>
+                        <a href="../pages/pengawasan-ormas.html">Tim Pengawasan Ormas</a>
+                    </div>
+                </li>
+                
+                <li><a href="../pages/ekonomi.html" class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition ">Data Ekonomi</a></li>
+                
+                <li class="dropdown">
+                    <button class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition dropdown-toggle ">
+                        Peta Monitoring
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="../pages/peta-kriminal.html">Peta Kriminal</a>
+                        <a href="../pages/peta-konflik.html">Peta Konflik</a>
+                        <a href="../pages/peta-orang-asing.html">Peta Orang Asing</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        
+        <div id="mobileMenu" class="mobile-menu md:hidden">
+            <ul class="flex flex-col gap-2 pb-4">
+                <li><a href="../index.html" class="nav-btn block w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition">Home</a></li>
+                
+                <li>
+                    <button onclick="toggleMobileDropdown('forum')" class="nav-btn w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition mobile-dropdown-toggle ">
+                        <span>Forum & Organisasi</span>
+                        <span class="mobile-dropdown-icon" id="forum-icon">▼</span>
+                    </button>
+                    <div id="forum-dropdown" class="mobile-dropdown-content">
+                        <a href="../pages/fpk.html" class="block py-2">FPK</a>
+                        <a href="../pages/paskibraka.html" class="block py-2">Paskibraka</a>
+                        <a href="../pages/fkub.html" class="block py-2">FKUB</a>
+                        <a href="../pages/fkdm.html" class="block py-2">FKDM</a>
+                    </div>
+                </li>
+                
+                <li>
+                    <button onclick="toggleMobileDropdown('politik')" class="nav-btn w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition mobile-dropdown-toggle active-nav">
+                        <span>Politik & Ormas</span>
+                        <span class="mobile-dropdown-icon" id="politik-icon">▼</span>
+                    </button>
+                    <div id="politik-dropdown" class="mobile-dropdown-content">
+                        <a href="../pages/parpol.html" class="block py-2">Partai Politik</a>
+                        <a href="../pages/ormas.html" class="block py-2">Ormas Terlapor</a>
+                        <a href="../pages/pengawasan-ormas.html" class="block py-2">Tim Pengawasan Ormas</a>
+                    </div>
+                </li>
+                
+                <li><a href="../pages/ekonomi.html" class="nav-btn block w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition ">Data Ekonomi</a></li>
+                
+                <li>
+                    <button onclick="toggleMobileDropdown('peta')" class="nav-btn w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition mobile-dropdown-toggle ">
+                        <span>Peta Monitoring</span>
+                        <span class="mobile-dropdown-icon" id="peta-icon">▼</span>
+                    </button>
+                    <div id="peta-dropdown" class="mobile-dropdown-content">
+                        <a href="../pages/peta-kriminal.html" class="block py-2">Peta Kriminal</a>
+                        <a href="../pages/peta-konflik.html" class="block py-2">Peta Konflik</a>
+                        <a href="../pages/peta-orang-asing.html" class="block py-2">Peta Orang Asing</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+    <main class="container mx-auto px-4 py-8">
+        <div class="mb-6">
+            <nav class="text-sm">
+                <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
+                <span class="text-gray-500 mx-2">›</span>
+                <span class="text-gray-700">Politik & Ormas</span>
+                <span class="text-gray-500 mx-2">›</span>
+                <span class="text-gray-900 font-semibold">Ormas Terlapor Jakarta Barat</span>
+            </nav>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Ormas Terlapor Jakarta Barat</h2>
+            <p class="text-gray-600 mb-4">Data Ketua Ormas, Jumlah Anggota Aktif, dan Alamat Kantor</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600">Ormas Terdaftar</p>
+                            <p class="text-3xl font-bold text-blue-600">156</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-red-50 rounded-lg p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600">Ormas Terlapor</p>
+                            <p class="text-3xl font-bold text-red-600">12</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-gray-600">
+                <p>Data lengkap akan ditampilkan di sini.</p>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-gray-800 text-white mt-auto">
+    <div class="container mx-auto px-4 py-6">
+        <div class="text-center">
+            <p class="text-sm">&copy; 2024 Sistem Monitoring Jakarta Barat. All rights reserved.</p>
+            <p class="text-xs text-gray-400 mt-2">Pemerintah Kota Administrasi Jakarta Barat</p>
+        </div>
+    </div>
+</footer>
+    <script>
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('open');
+        });
+        
+        function toggleMobileDropdown(id) {
+            const dropdown = document.getElementById(id + '-dropdown');
+            const icon = document.getElementById(id + '-icon');
+            dropdown.classList.toggle('open');
+            icon.classList.toggle('open');
+        }
+    </script>
+
+    <script src="tailwind.js"></script>
+</body>
+</html>
