@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Harga Pasar (Ekonomi) Jakarta Barat - Monitoring Jakarta Barat</title>
-    <link rel="stylesheet" href="../custom-styles.css">
+    
+    <!-- ✅ TAILWIND FULL CSS -->
+    <link rel="stylesheet" href="../libs/tailwind.css">
     
     <style>
+        /* Remove list markers */
+        *, ul, ol, li {
+            list-style: none !important;
+            list-style-type: none !important;
+        }
+        
+        /* Sticky footer layout */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        main {
+            flex: 1;
+        }
+        
+        /* Dropdown styles */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -101,38 +121,38 @@
                 <li><a href="../index.html" class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition">Home</a></li>
                 
                 <li class="dropdown">
-                    <button class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition dropdown-toggle ">
+                    <button class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition dropdown-toggle">
                         Forum & Organisasi
                     </button>
                     <div class="dropdown-content">
-                        <a href="../pages/fpk.html">FPK</a>
-                        <a href="../pages/paskibraka.html">Paskibraka</a>
-                        <a href="../pages/fkub.html">FKUB</a>
-                        <a href="../pages/fkdm.html">FKDM</a>
+                        <a href="fpk.html">FPK</a>
+                        <a href="paskibraka.html">Paskibraka</a>
+                        <a href="fkub.html">FKUB</a>
+                        <a href="fkdm.html">FKDM</a>
                     </div>
                 </li>
                 
                 <li class="dropdown">
-                    <button class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition dropdown-toggle ">
+                    <button class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition dropdown-toggle">
                         Politik & Ormas
                     </button>
                     <div class="dropdown-content">
-                        <a href="../pages/parpol.html">Partai Politik</a>
-                        <a href="../pages/ormas.html">Ormas Terlapor</a>
-                        <a href="../pages/pengawasan-ormas.html">Tim Pengawasan Ormas</a>
+                        <a href="parpol.html">Partai Politik</a>
+                        <a href="ormas.html">Ormas Terlapor</a>
+                        <a href="pengawasan-ormas.html">Tim Pengawasan Ormas</a>
                     </div>
                 </li>
                 
-                <li><a href="../pages/ekonomi.html" class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition active-nav">Data Ekonomi</a></li>
+                <li><a href="ekonomi.html" class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition active-nav">Data Ekonomi</a></li>
                 
                 <li class="dropdown">
-                    <button class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition dropdown-toggle ">
+                    <button class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-700 transition dropdown-toggle">
                         Peta Monitoring
                     </button>
                     <div class="dropdown-content">
-                        <a href="../pages/peta-kriminal.html">Peta Kriminal</a>
-                        <a href="../pages/peta-konflik.html">Peta Konflik</a>
-                        <a href="../pages/peta-orang-asing.html">Peta Orang Asing</a>
+                        <a href="peta-kriminal.html">Peta Kriminal</a>
+                        <a href="peta-konflik.html">Peta Konflik</a>
+                        <a href="peta-orang-asing.html">Peta Orang Asing</a>
                     </div>
                 </li>
             </ul>
@@ -143,48 +163,50 @@
                 <li><a href="../index.html" class="nav-btn block w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition">Home</a></li>
                 
                 <li>
-                    <button onclick="toggleMobileDropdown('forum')" class="nav-btn w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition mobile-dropdown-toggle ">
+                    <button onclick="toggleMobileDropdown('forum')" class="nav-btn w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition mobile-dropdown-toggle">
                         <span>Forum & Organisasi</span>
                         <span class="mobile-dropdown-icon" id="forum-icon">▼</span>
                     </button>
                     <div id="forum-dropdown" class="mobile-dropdown-content">
-                        <a href="../pages/fpk.html" class="block py-2">FPK</a>
-                        <a href="../pages/paskibraka.html" class="block py-2">Paskibraka</a>
-                        <a href="../pages/fkub.html" class="block py-2">FKUB</a>
-                        <a href="../pages/fkdm.html" class="block py-2">FKDM</a>
+                        <a href="fpk.html" class="block py-2">FPK</a>
+                        <a href="paskibraka.html" class="block py-2">Paskibraka</a>
+                        <a href="fkub.html" class="block py-2">FKUB</a>
+                        <a href="fkdm.html" class="block py-2">FKDM</a>
                     </div>
                 </li>
                 
                 <li>
-                    <button onclick="toggleMobileDropdown('politik')" class="nav-btn w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition mobile-dropdown-toggle ">
+                    <button onclick="toggleMobileDropdown('politik')" class="nav-btn w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition mobile-dropdown-toggle">
                         <span>Politik & Ormas</span>
                         <span class="mobile-dropdown-icon" id="politik-icon">▼</span>
                     </button>
                     <div id="politik-dropdown" class="mobile-dropdown-content">
-                        <a href="../pages/parpol.html" class="block py-2">Partai Politik</a>
-                        <a href="../pages/ormas.html" class="block py-2">Ormas Terlapor</a>
-                        <a href="../pages/pengawasan-ormas.html" class="block py-2">Tim Pengawasan Ormas</a>
+                        <a href="parpol.html" class="block py-2">Partai Politik</a>
+                        <a href="ormas.html" class="block py-2">Ormas Terlapor</a>
+                        <a href="pengawasan-ormas.html" class="block py-2">Tim Pengawasan Ormas</a>
                     </div>
                 </li>
                 
-                <li><a href="../pages/ekonomi.html" class="nav-btn block w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition active-nav">Data Ekonomi</a></li>
+                <li><a href="ekonomi.html" class="nav-btn block w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition active-nav">Data Ekonomi</a></li>
                 
                 <li>
-                    <button onclick="toggleMobileDropdown('peta')" class="nav-btn w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition mobile-dropdown-toggle ">
+                    <button onclick="toggleMobileDropdown('peta')" class="nav-btn w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition mobile-dropdown-toggle">
                         <span>Peta Monitoring</span>
                         <span class="mobile-dropdown-icon" id="peta-icon">▼</span>
                     </button>
                     <div id="peta-dropdown" class="mobile-dropdown-content">
-                        <a href="../pages/peta-kriminal.html" class="block py-2">Peta Kriminal</a>
-                        <a href="../pages/peta-konflik.html" class="block py-2">Peta Konflik</a>
-                        <a href="../pages/peta-orang-asing.html" class="block py-2">Peta Orang Asing</a>
+                        <a href="peta-kriminal.html" class="block py-2">Peta Kriminal</a>
+                        <a href="peta-konflik.html" class="block py-2">Peta Konflik</a>
+                        <a href="peta-orang-asing.html" class="block py-2">Peta Orang Asing</a>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 </header>
+
     <main class="container mx-auto px-4 py-8">
+        <!-- Breadcrumb -->
         <div class="mb-6">
             <nav class="text-sm">
                 <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
@@ -196,41 +218,42 @@
         </div>
         
         <div class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Data Harga Pasar (Ekonomi) Jakarta Barat</h2>
-            <p class="text-gray-600 mb-4">Update harga sembako di berbagai pasar</p>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Data Harga Pasar (Ekonomi) Jakarta Barat</h2>
+            <p class="text-gray-600 mb-6">Update harga sembako di berbagai pasar</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div class="bg-green-50 rounded-lg p-4">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-sm text-gray-600">Pasar Terpantau</p>
-                            <p class="text-3xl font-bold text-green-600">24</p>
-                        </div>
-                    </div>
+            <!-- Stats Cards dengan Spacing yang Benar -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Card 1: Pasar Terpantau -->
+                <div class="bg-green-50 rounded-lg p-6">
+                    <p class="text-sm text-gray-600 mb-2">Pasar Terpantau</p>
+                    <p class="text-4xl font-bold text-green-600">24</p>
                 </div>
-                <div class="bg-blue-50 rounded-lg p-4">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-sm text-gray-600">Komoditas</p>
-                            <p class="text-3xl font-bold text-blue-600">45</p>
-                        </div>
-                    </div>
+                
+                <!-- Card 2: Komoditas -->
+                <div class="bg-blue-50 rounded-lg p-6">
+                    <p class="text-sm text-gray-600 mb-2">Komoditas</p>
+                    <p class="text-4xl font-bold text-blue-600">45</p>
                 </div>
             </div>
             
+            <!-- Info Text -->
             <div class="text-gray-600">
                 <p>Data lengkap akan ditampilkan di sini.</p>
             </div>
         </div>
     </main>
-    <footer class="bg-gray-800 text-white mt-auto">
-    <div class="container mx-auto px-4 py-6">
-        <div class="text-center">
-            <p class="text-sm">&copy; 2024 Sistem Monitoring Jakarta Barat. All rights reserved.</p>
-            <p class="text-xs text-gray-400 mt-2">Pemerintah Kota Administrasi Jakarta Barat</p>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-2 py-2 ">
+            <div class="text-center">
+                <p class="text-sm">&copy; 2026 Sistem Monitoring Jakarta Barat. All rights reserved.</p>
+                <p class="text-xs text-gray-400 mt-1">Pemerintah Kota Administrasi Jakarta Barat</p>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+
+    <!-- Scripts -->
     <script>
         document.getElementById('mobileMenuBtn').addEventListener('click', function() {
             const menu = document.getElementById('mobileMenu');
@@ -244,7 +267,5 @@
             icon.classList.toggle('open');
         }
     </script>
-
-    <script src="tailwind.js"></script>
 </body>
 </html>

@@ -5,10 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitoring Jakarta Barat</title>
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="custom-styles.css">
-    
+    <!-- Tailwind Full CSS -->
+    <link rel="stylesheet" href="libs/tailwind.css">
+    <!-- <script src="tailwind-full.min.js"> </script> -->
     <style>
+        /* CRITICAL: Remove ALL list markers */
+        * {
+            list-style: none !important;
+        }
+        
+        ul, ol, li {
+            list-style: none !important;
+            list-style-type: none !important;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Sticky footer layout */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        main {
+            flex: 1;
+        }
+        
+        /* Stats Cards with Gradient - Direct Style */
+        .stats-card-blue {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        
+        .stats-card-green {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        
+        .stats-card-red {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        
+        .stats-card-purple {
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        
         /* Dropdown menu styles */
         .dropdown {
             position: relative;
@@ -114,7 +167,6 @@
                         </button>
                         <div class="dropdown-content">
                             <a href="pages/fpk.html">FPK</a>
-                            <a href="pages/paskibraka.html">Paskibraka</a>
                             <a href="pages/fkub.html">FKUB</a>
                             <a href="pages/fkdm.html">FKDM</a>
                         </div>
@@ -161,7 +213,6 @@
                         </button>
                         <div id="forum-dropdown" class="mobile-dropdown-content">
                             <a href="pages/fpk.html" class="block py-2">FPK</a>
-                            <a href="pages/paskibraka.html" class="block py-2">Paskibraka</a>
                             <a href="pages/fkub.html" class="block py-2">FKUB</a>
                             <a href="pages/fkdm.html" class="block py-2">FKDM</a>
                         </div>
@@ -212,7 +263,8 @@
             
             <!-- Quick Stats -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
-                <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+                <!-- Card 1: Blue Gradient -->
+                <div class="stats-card-blue">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-blue-100 text-sm">Total Forum & Organisasi</p>
@@ -224,7 +276,8 @@
                     </div>
                 </div>
                 
-                <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+                <!-- Card 2: Green Gradient -->
+                <div class="stats-card-green">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-green-100 text-sm">Partai & Ormas</p>
@@ -236,7 +289,8 @@
                     </div>
                 </div>
                 
-                <div class="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+                <!-- Card 3: Red Gradient -->
+                <div class="stats-card-red">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-red-100 text-sm">Zona Rawan</p>
@@ -248,7 +302,8 @@
                     </div>
                 </div>
                 
-                <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+                <!-- Card 4: Purple Gradient -->
+                <div class="stats-card-purple">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-purple-100 text-sm">Orang Asing</p>
@@ -282,16 +337,16 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-auto">
-        <div class="container mx-auto px-4 py-6">
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-2 py-2 ">
             <div class="text-center">
-                <p class="text-sm">&copy; 2024 Sistem Monitoring Jakarta Barat. All rights reserved.</p>
-                <p class="text-xs text-gray-400 mt-2">Pemerintah Kota Administrasi Jakarta Barat</p>
+                <p class="text-sm">&copy; 2026 Sistem Monitoring Jakarta Barat. All rights reserved.</p>
+                <p class="text-xs text-gray-400 mt-1">Pemerintah Kota Administrasi Jakarta Barat</p>
             </div>
         </div>
     </footer>
 
-    <!-- ✅ SCRIPTS - HANYA MOBILE MENU -->
+    <!-- Scripts -->
     <script>
         // Mobile menu toggle
         document.getElementById('mobileMenuBtn').addEventListener('click', function() {
@@ -307,7 +362,5 @@
             icon.classList.toggle('open');
         }
     </script>
-
-    <script src="tailwind.js"></script>
 </body>
 </html>

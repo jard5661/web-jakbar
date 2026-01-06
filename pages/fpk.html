@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum Pembauran Kebangsaan (FPK) Jakarta Barat - Monitoring Jakarta Barat</title>
-    <link rel="stylesheet" href="../custom-styles.css">
+    <link rel="stylesheet" href="../libs/tailwind.css">
     
     <style>
+        /* Remove list markers */
+        *, ul, ol, li {
+            list-style: none !important;
+            list-style-type: none !important;
+        }
+        
+        /* Sticky footer layout */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        main {
+            flex: 1;
+        }
+        
+
         .dropdown {
             position: relative;
             display: inline-block;
@@ -106,7 +124,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="../pages/fpk.html">FPK</a>
-                        <a href="../pages/paskibraka.html">Paskibraka</a>
+                        
                         <a href="../pages/fkub.html">FKUB</a>
                         <a href="../pages/fkdm.html">FKDM</a>
                     </div>
@@ -149,7 +167,7 @@
                     </button>
                     <div id="forum-dropdown" class="mobile-dropdown-content">
                         <a href="../pages/fpk.html" class="block py-2">FPK</a>
-                        <a href="../pages/paskibraka.html" class="block py-2">Paskibraka</a>
+                        
                         <a href="../pages/fkub.html" class="block py-2">FKUB</a>
                         <a href="../pages/fkdm.html" class="block py-2">FKDM</a>
                     </div>
@@ -199,7 +217,7 @@
             <h2 class="text-2xl font-bold text-gray-800 mb-4">Forum Pembauran Kebangsaan (FPK) Jakarta Barat</h2>
             <p class="text-gray-600 mb-4">Forum yang berfokus pada pembauran kebangsaan dan persatuan di wilayah Jakarta Barat</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div class="bg-blue-50 rounded-lg p-4">
                     <div class="flex items-center justify-between">
                         <div>
@@ -231,14 +249,15 @@
             </div>
         </div>
     </main>
-    <footer class="bg-gray-800 text-white mt-auto">
-    <div class="container mx-auto px-4 py-6">
-        <div class="text-center">
-            <p class="text-sm">&copy; 2024 Sistem Monitoring Jakarta Barat. All rights reserved.</p>
-            <p class="text-xs text-gray-400 mt-2">Pemerintah Kota Administrasi Jakarta Barat</p>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-2 py-2 ">
+            <div class="text-center">
+                <p class="text-sm">&copy; 2026 Sistem Monitoring Jakarta Barat. All rights reserved.</p>
+                <p class="text-xs text-gray-400 mt-1">Pemerintah Kota Administrasi Jakarta Barat</p>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
     <script>
         document.getElementById('mobileMenuBtn').addEventListener('click', function() {
             const menu = document.getElementById('mobileMenu');
@@ -254,6 +273,6 @@
     </script>
 
     <script src="../jakbar.js"></script>
-    <script src="tailwind.js"></script>
+
 </body>
 </html>

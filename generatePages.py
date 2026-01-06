@@ -335,7 +335,7 @@ def get_footer():
     return '''<footer class="bg-gray-800 text-white mt-auto">
     <div class="container mx-auto px-4 py-6">
         <div class="text-center">
-            <p class="text-sm">&copy; 2024 Sistem Monitoring Jakarta Barat. All rights reserved.</p>
+            <p class="text-sm">&copy; 2026 Sistem Monitoring Jakarta Barat. All rights reserved.</p>
             <p class="text-xs text-gray-400 mt-2">Pemerintah Kota Administrasi Jakarta Barat</p>
         </div>
     </div>
