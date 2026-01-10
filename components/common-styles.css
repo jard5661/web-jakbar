@@ -1,0 +1,133 @@
+/* Remove ALL list markers */
+*, ul, ol, li {
+    list-style: none !important;
+    list-style-type: none !important;
+}
+
+ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Sticky footer layout */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* Stats Cards with Gradient */
+.stats-card-blue {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+.stats-card-green {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+.stats-card-red {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+.stats-card-purple {
+    background: linear-gradient(135deg, #a855f7, #9333ea);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+/* Dropdown menu styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1e40af;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    border-radius: 0.5rem;
+    top: 100%;
+    left: 0;
+    padding-top: 0.25rem;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 0.5rem;
+}
+
+.dropdown-content a:hover {
+    background-color: #1d4ed8;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-toggle::after {
+    content: " ▼";
+    font-size: 0.7em;
+    margin-left: 4px;
+}
+
+/* Mobile menu */
+.mobile-menu {
+    display: none;
+}
+
+.mobile-menu.open {
+    display: block;
+}
+
+/* Mobile dropdown */
+.mobile-dropdown-content {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+    padding-left: 1rem;
+}
+
+.mobile-dropdown-content.open {
+    display: block;
+}
+
+.mobile-dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-dropdown-icon {
+    transition: transform 0.3s;
+}
+
+.mobile-dropdown-icon.open {
+    transform: rotate(180deg);
+}
+
+/* Active nav button */
+.active-nav {
+    background-color: #1d4ed8;
+}

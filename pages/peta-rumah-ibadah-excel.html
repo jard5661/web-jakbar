@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Rumah Ibadah Jakarta Barat - Monitoring Jakarta Barat</title>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../libs/tailwind.css">
+
+    <!-- Common Styles -->
+    <link rel="stylesheet" href="../components/common-styles.css">
+
+    <!-- SheetJS Library untuk baca Excel -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
+    <style>
+        /* Table Styles */
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        thead th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:hover {
+            background-color: #f9fafb;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody td {
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: #374151;
+        }
+
+        tbody td.no-column {
+            text-align: center;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        /* Sheet Tabs */
+        .sheet-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .sheet-tab {
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .sheet-tab:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .sheet-tab.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border-color: #2563eb;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .pagination-info {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .pagination-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: #f3f4f6;
+            border-color: #3b82f6;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            border: 3px solid #e5e7eb;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Search Box */
+        .search-box {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box p {
+            color: #1e40af;
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        .info-box strong {
+            color: #1e3a8a;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            thead th,
+            tbody td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            .sheet-tab {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Breadcrumb -->
+        <div class="mb-6">
+            <nav class="text-sm">
+                <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
+                <span class="text-gray-500 mx-2">›</span>
+                <span class="text-gray-900 font-semibold">Peta Rumah Ibadah</span>
+            </nav>
+        </div>
+
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Data Rumah Ibadah Jakarta Barat</h2>
+            <p class="text-gray-600">Data rumah ibadah per kecamatan di wilayah Jakarta Barat</p>
+        </div>
+
+        <!-- Sheet Tabs -->
+        <div class="sheet-tabs" id="sheetTabs" style="display: none;">
+            <!-- Tabs will be generated by JavaScript -->
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box" style="display: none;" id="searchBox">
+            <input type="text"
+                   id="searchInput"
+                   class="search-input"
+                   placeholder="🔍 Cari data...">
+        </div>
+
+        <!-- Table Container -->
+        <div class="table-container">
+            <div id="loadingState" class="loading">
+                <div class="loading-spinner"></div>
+                <p class="mt-4">Memuat data dari Excel...</p>
+            </div>
+
+            <div id="emptyState" class="loading" style="display: none;">
+                <p class="text-gray-600">📊 Tidak ada data</p>
+            </div>
+
+            <table id="dataTable" style="display: none;">
+                <thead>
+                    <tr id="tableHeader">
+                        <!-- Headers will be generated by JavaScript -->
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Rows will be generated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="paginationContainer" style="display: none;">
+            <div class="pagination-info" id="paginationInfo">
+                <!-- Info will be generated by JavaScript -->
+            </div>
+            <div class="pagination-buttons" id="paginationButtons">
+                <!-- Buttons will be generated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Components Script -->
+    <script src="../components/components.js"></script>
+
+    <!-- Table Script -->
+    <script>
+        // Configuration
+        const EXCEL_FILE_PATH = '../data/data-rumah-ibadah.xlsx'; // Path ke file Excel di repo
+        const ROWS_PER_PAGE = 10;
+
+        // State
+        let workbook = null;
+        let sheetNames = [];
+        let currentSheetName = null;
+        let currentPage = 1;
+        let allData = [];
+        let filteredData = [];
+
+        // Auto-load Excel file on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadExcelFile();
+        });
+
+        // Load Excel file from repository
+        async function loadExcelFile() {
+            try {
+                showLoading(true);
+
+                // Fetch the Excel file
+                const response = await fetch(EXCEL_FILE_PATH);
+
+                if (!response.ok) {
+                    throw new Error(`File tidak ditemukan: ${EXCEL_FILE_PATH}`);
+                }
+
+                // Read as array buffer
+                const arrayBuffer = await response.arrayBuffer();
+                const data = new Uint8Array(arrayBuffer);
+
+                // Parse with SheetJS
+                workbook = XLSX.read(data, { type: 'array' });
+
+                // Get sheet names
+                sheetNames = workbook.SheetNames;
+
+                if (sheetNames.length === 0) {
+                    showError('File Excel tidak memiliki sheet!');
+                    return;
+                }
+
+                // Generate tabs and load first sheet
+                generateSheetTabs();
+                loadSheet(sheetNames[0]);
+
+                // Show search box
+                document.getElementById('searchBox').style.display = 'block';
+
+            } catch (error) {
+                console.error('Error loading Excel:', error);
+                showError('Gagal memuat file Excel: ' + error.message + '<br><br>Pastikan file <strong>data/data-rumah-ibadah.xlsx</strong> ada di repository.');
+            }
+        }
+
+        // Generate sheet tabs
+        function generateSheetTabs() {
+            const tabsContainer = document.getElementById('sheetTabs');
+            tabsContainer.style.display = 'flex';
+
+            tabsContainer.innerHTML = sheetNames.map((name, index) =>
+                `<button class="sheet-tab ${index === 0 ? 'active' : ''}"
+                        onclick="loadSheet('${name.replace(/'/g, "\\'")}')">
+                    ${name}
+                </button>`
+            ).join('');
+        }
+
+        // Load specific sheet
+        function loadSheet(sheetName) {
+            try {
+                showLoading(true);
+                currentSheetName = sheetName;
+                currentPage = 1;
+
+                // Update active tab
+                document.querySelectorAll('.sheet-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.textContent.trim() === sheetName) {
+                        tab.classList.add('active');
+                    }
+                });
+
+                // Get sheet data
+                const worksheet = workbook.Sheets[sheetName];
+
+                // Convert to array of arrays
+                allData = XLSX.utils.sheet_to_json(worksheet, {
+                    header: 1,  // Return array of arrays instead of objects
+                    defval: ''  // Default value for empty cells
+                });
+
+                // Filter out completely empty rows
+                allData = allData.filter(row => row.some(cell => cell !== ''));
+
+                filteredData = allData;
+
+                if (allData.length > 0) {
+                    renderTable();
+                    showLoading(false);
+                } else {
+                    showError('Sheet kosong atau tidak ada data.');
+                }
+            } catch (error) {
+                console.error('Error loading sheet:', error);
+                showError('Gagal memuat sheet: ' + error.message);
+            }
+        }
+
+        // Render table
+        function renderTable() {
+            if (filteredData.length === 0) {
+                showError('Tidak ada data yang cocok dengan pencarian.');
+                return;
+            }
+
+            const headers = filteredData[0];
+            const rows = filteredData.slice(1);
+
+            // Render headers
+            const headerHtml = headers.map(header =>
+                `<th>${header || ''}</th>`
+            ).join('');
+            document.getElementById('tableHeader').innerHTML = headerHtml;
+
+            // Calculate pagination
+            const totalPages = Math.ceil(rows.length / ROWS_PER_PAGE);
+            const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
+            const endIndex = startIndex + ROWS_PER_PAGE;
+            const pageRows = rows.slice(startIndex, endIndex);
+
+            // Render rows
+            const bodyHtml = pageRows.map((row, index) => {
+                const rowHtml = headers.map((header, colIndex) => {
+                    const value = row[colIndex] !== undefined ? row[colIndex] : '-';
+                    const isNoColumn = colIndex === 0 && !isNaN(value);
+                    return `<td class="${isNoColumn ? 'no-column' : ''}">${value}</td>`;
+                }).join('');
+                return `<tr>${rowHtml}</tr>`;
+            }).join('');
+            document.getElementById('tableBody').innerHTML = bodyHtml;
+
+            // Render pagination
+            renderPagination(rows.length, totalPages);
+
+            // Show table
+            document.getElementById('emptyState').style.display = 'none';
+            document.getElementById('dataTable').style.display = 'table';
+            document.getElementById('paginationContainer').style.display = 'flex';
+        }
+
+        // Render pagination
+        function renderPagination(totalRows, totalPages) {
+            const startRow = (currentPage - 1) * ROWS_PER_PAGE + 1;
+            const endRow = Math.min(currentPage * ROWS_PER_PAGE, totalRows);
+
+            // Info
+            document.getElementById('paginationInfo').textContent =
+                `Menampilkan ${startRow}-${endRow} dari ${totalRows} data`;
+
+            // Buttons
+            let buttonsHtml = '';
+
+            // Previous button
+            buttonsHtml += `
+                <button class="pagination-btn"
+                        onclick="changePage(${currentPage - 1})"
+                        ${currentPage === 1 ? 'disabled' : ''}>
+                    ‹ Sebelumnya
+                </button>
+            `;
+
+            // Page numbers
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage < maxVisiblePages - 1) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                buttonsHtml += `
+                    <button class="pagination-btn ${i === currentPage ? 'active' : ''}"
+                            onclick="changePage(${i})">
+                        ${i}
+                    </button>
+                `;
+            }
+
+            // Next button
+            buttonsHtml += `
+                <button class="pagination-btn"
+                        onclick="changePage(${currentPage + 1})"
+                        ${currentPage === totalPages ? 'disabled' : ''}>
+                    Selanjutnya ›
+                </button>
+            `;
+
+            document.getElementById('paginationButtons').innerHTML = buttonsHtml;
+        }
+
+        // Change page
+        function changePage(page) {
+            const totalPages = Math.ceil((filteredData.length - 1) / ROWS_PER_PAGE);
+            if (page < 1 || page > totalPages) return;
+
+            currentPage = page;
+            renderTable();
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Setup search
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+
+            if (searchTerm === '') {
+                filteredData = allData;
+            } else {
+                const headers = allData[0];
+                const rows = allData.slice(1);
+
+                const filtered = rows.filter(row =>
+                    row.some(cell =>
+                        String(cell).toLowerCase().includes(searchTerm)
+                    )
+                );
+
+                filteredData = [headers, ...filtered];
+            }
+
+            currentPage = 1;
+            renderTable();
+        });
+
+        // Show/hide loading
+        function showLoading(show) {
+            document.getElementById('loadingState').style.display = show ? 'block' : 'none';
+            document.getElementById('dataTable').style.display = show ? 'none' : 'table';
+            document.getElementById('paginationContainer').style.display = show ? 'none' : 'flex';
+        }
+
+        // Show error
+        function showError(message) {
+            showLoading(false);
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('emptyState').innerHTML = `
+                <p class="text-red-600 font-semibold">${message}</p>
+            `;
+            document.getElementById('dataTable').style.display = 'none';
+            document.getElementById('paginationContainer').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
