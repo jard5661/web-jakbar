@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum Pembauran Kebangsaan (FPK) Jakarta Barat - Monitoring Jakarta Barat</title>
+    <title>DPPI Jakarta Barat - Monitoring Jakarta Barat</title>
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../libs/tailwind.css">
@@ -232,15 +232,15 @@
                 <span class="text-gray-500 mx-1">›</span>
                 <span class="text-gray-700">Forum & Organisasi</span>
                 <span class="text-gray-500 mx-1">›</span>
-                <span class="text-gray-900 font-semibold">FPK</span>
+                <span class="text-gray-900 font-semibold">DPPI</span>
             </nav>
         </div>
 
         <!-- Header - Compact -->
         <div class="page-header">
             <div>
-                <h2>Forum Pembauran Kebangsaan (FPK) Jakarta Barat</h2>
-                <p>Data anggota FPK di wilayah Jakarta Barat</p>
+                <h2>DPPI Jakarta Barat</h2>
+                <p>Data anggota DPPI di wilayah Jakarta Barat</p>
             </div>
         </div>
 
@@ -295,7 +295,7 @@
     <!-- Table Script -->
     <script>
         // Configuration
-        const EXCEL_FILE_PATH = '../data/data-fpk.xlsx'; // Path ke file Excel di repo
+        const EXCEL_FILE_PATH = '../data/dppi-2025.xlsx'; // Path ke file Excel di repo
         const ROWS_PER_PAGE = 10;
 
         // State
@@ -355,7 +355,7 @@
 
             } catch (error) {
                 console.error('Error loading Excel:', error);
-                showError('Gagal memuat file Excel: ' + error.message + '<br><br>Pastikan file <strong>data/data-fpk.xlsx</strong> ada di repository.');
+                showError('Gagal memuat file Excel: ' + error.message + '<br><br>Pastikan file <strong>data/dppi-2025.xlsx</strong> ada di repository.');
             }
         }
 

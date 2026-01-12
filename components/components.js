@@ -38,6 +38,8 @@ function getNavbarHTML(basePath = '') {
                         <a href="${basePath}pages/fpk.html">FPK</a>
                         <a href="${basePath}pages/fkub.html">FKUB</a>
                         <a href="${basePath}pages/fkdm.html">FKDM</a>
+                        <a href="${basePath}pages/paskibraka.html">Paskibraka</a>
+                        <a href="${basePath}pages/dppi.html">DPPI</a>
                     </div>
                 </li>
 
@@ -81,6 +83,8 @@ function getNavbarHTML(basePath = '') {
                         <a href="${basePath}pages/fpk.html" class="block" style="padding: 0.4rem 0 !important; font-size: 0.875rem !important;">FPK</a>
                         <a href="${basePath}pages/fkub.html" class="block" style="padding: 0.4rem 0 !important; font-size: 0.875rem !important;">FKUB</a>
                         <a href="${basePath}pages/fkdm.html" class="block" style="padding: 0.4rem 0 !important; font-size: 0.875rem !important;">FKDM</a>
+                        <a href="${basePath}pages/paskibraka.html" class="block" style="padding: 0.4rem 0 !important; font-size: 0.875rem !important;">Paskibraka</a>
+                        <a href="${basePath}pages/dppi.html" class="block" style="padding: 0.4rem 0 !important; font-size: 0.875rem !important;">DPPI</a>
                     </div>
                 </li>
 
